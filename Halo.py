@@ -348,6 +348,7 @@ class Halo:
     # --- BHFT (Black Hole Formation Time) ---
     @cached_property
     def bhft(self):
+        """BH Formation Time of the BHs belonging to the halo in [years]."""
         return self._load_bhft()
 
     # --- SFH ---
@@ -359,11 +360,13 @@ class Halo:
     # --- R50 ---
     @cached_property
     def r50(self):
+        """Half-stellar-mass radius in [kpc]."""
         return self._compute_R50()
 
     # --- R1 ---
     @cached_property
     def r1(self):
+        """Radius at which the stellar surface density equals 1M_sun*pc^-2 in [kpc]."""
         return self._compute_R1()
 
     # --- MAX ROTATION VELOCITY (for the Tully-Fisher relation) ---
@@ -1026,21 +1029,6 @@ class Halo:
 
     # ------------------------------
 
-    """def _compute_sfh(self):
-
-        # Verify if we have data in sft (maybe the halo doesn't have stars)
-        if len(self.sft) == 0:
-            # If there are no stars, return 99 zeros
-            # (because we use 100 bins -> the histogram has 99 gaps)
-            return np.zeros(99)
-
-        # Time bins correspond to the hole time array of the simulation
-        # this way we make sure that all halos have the same time axis
-        time_bins = np.linspace(self.min_t, self.max_t, 100)
-        hist_sfh, _ = np.histogram(self.sft, time_bins)
-
-        return hist_sfh"""
-
     def _compute_sfh(self):
 
         # Verify if we have data in sft (maybe the halo doesn't have stars)
@@ -1214,12 +1202,6 @@ class Halo:
         else:
             self._save_in_file(0.0, "R1")
 
-    """def save_sersic_index(self):
-        if self.is_valid:
-            self._save_in_file(self.sersic_index, "SersicIndex")
-        else:
-            self._save_in_file(np.nan, "SersicIndex")"""
-
     def save_k_co(self):
         if self.is_valid:
             self._save_in_file(self.k_co, "kco")
@@ -1286,7 +1268,7 @@ class Halo:
         self.save_k_co()
         self.save_vmax()
         self.save_r_halo()
-        self.save_dm_inner_slope()
+        #self.save_dm_inner_slope()
 
     def plot_halo(
         self, PartTypes, plane=("x", "y"), styles=None, zoom=None, save_path=None
