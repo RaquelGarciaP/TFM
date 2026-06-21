@@ -5,8 +5,6 @@ import numpy as np
 import os
 from scipy.optimize import root_scalar
 
-# from Snapshot import Snapshot
-
 
 class Halo:
 
