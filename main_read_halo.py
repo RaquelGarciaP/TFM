@@ -34,7 +34,6 @@ s = Snapshot(snapshot_file)
     halo.save_k_co()
     halo.save_vmax()
     halo.save_r_halo()
-    halo.save_dm_inner_slope()
 """
 
 # If we want to save all the properties above, we can use the following function
